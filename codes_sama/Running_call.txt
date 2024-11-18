@@ -1,0 +1,14 @@
+
+
+CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nnodes 1 --nproc_per_node 1 train.py --config configs/demo.yaml
+
+
+python testf.py --config configs/demo.yaml --model save/_demo/model_epoch_epoch_100.pth 
+
+
+
+python testf.py --config configs/cod-sam-vit-b.yaml --model save/_cod-sam-vit-b/model_epoch_last.pth
+
+python testf.py --config configs/cod-sam-vit-b.yaml --model save/_cod-sam-vit-b/model_epoch_epoch_100.pth
+
+CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nnodes 1 --nproc_per_node 1 train.py --config configs/cod-sam-vit-b.yaml
